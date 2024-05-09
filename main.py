@@ -186,7 +186,7 @@ if selected_page == "Stock Chart":
 
 elif selected_page == "Related News":
     st.title('Latest News')
-    ticker_news = st.text_input('Enter stock symbol (e.g., AAPL):', 'AAPL')
+    ticker_news = st.text_input('Enter stock symbol (e.g., GOOG):', 'GOOG')
     news_data = get_stock_news(ticker_news)
     if news_data:
         for news_item in news_data:
