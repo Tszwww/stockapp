@@ -93,6 +93,28 @@ def get_stock_news(ticker):
                 }
                 news_list.append(news_item)
             break  # Exit the loop if news items are found for the current exchange
+        news_container = soup.select_one(".rv7pxc.m127rjn")
+
+        if news_container:
+            news_elements = news_container.select(".YbNUpf")
+
+            for element in news_elements:
+                title_element = element.select_one(".CbNjCe")
+                title = title_element.text.strip() if title_element else ""
+                source_element = element.select_one(".xvbXJb")
+                source = source_element.text.strip() if source_element else ""
+                date_element = element.select_one(".UtzVPe")
+                date = date_element.text.strip() if date_element else ""
+                url_element = element.select_one("a")
+                url = url_element["href"] if url_element else ""
+
+                news_item = {
+                    "title": title,
+                    "source": source,
+                    "date": date,
+                    "url": url,
+                }
+                news_list.append(news_item)
     return news_list
 
 def get_price_data(ticker, start_date, end_date):
